@@ -62,6 +62,7 @@ func MakeServicesRoute() *v2.RouteConfiguration {
 }
 
 func MakeEndpoint(clusterName string, port uint32) *v2.ClusterLoadAssignment {
+	// Resolve IP address for https://github.com/envoyproxy/go-control-plane/issues/87
 	addr, _ := net.ResolveIPAddr("ip4", clusterName)
 	return &v2.ClusterLoadAssignment{
 		ClusterName: clusterName,
