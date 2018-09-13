@@ -1,0 +1,12 @@
+FROM golang:1.10 AS builder
+
+COPY xds /go/src/github.com/rrreeeyyy/service-mesh-example/xds/
+
+WORKDIR /go/src/github.com/rrreeeyyy/service-mesh-example/xds/
+
+RUN env GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -o /xds .
+
+FROM alpine:edge
+RUN apk add --update --no-cache ca-certificates
+COPY --from=builder /xds /xds
+ENTRYPOINT ["/xds"]
