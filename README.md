@@ -2,6 +2,32 @@
 
 Service mesh example originates from [envoy/example/front-proxy](https://github.com/envoyproxy/envoy/tree/adda57914297f4179ae29e4bb34685124f3e516b/examples/front-proxy) with minimal xDS API Server using with [go-control-plane](https://github.com/envoyproxy/go-control-plane)
 
+## Configuration
+
+- Static front-proxy configuration: `./front-envoy.yaml`
+- Dynamic front-proxy configuration with xDS API Server: `./front-envoy-with-xds.yaml`
+
+If you want to use `front-envoy-with-xds.yaml`, apply patch below:
+
+```
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index 10735ef..27327cd 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -5,9 +5,9 @@ services:
+       context: .
+       dockerfile: Dockerfile-frontenvoy
+     volumes:
+-      - ./front-envoy.yaml:/etc/front-envoy.yaml
++    # - ./front-envoy.yaml:/etc/front-envoy.yaml
+     # With xDS Server configuration
+-    # - ./front-envoy-with-xds.yaml:/etc/front-envoy.yaml
++      - ./front-envoy-with-xds.yaml:/etc/front-envoy.yaml
+     networks:
+       - envoymesh
+     expose:
+```
+
 ## Usage
 
 ```
