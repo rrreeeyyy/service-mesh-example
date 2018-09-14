@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile-frontenvoy
     volumes:
       - ./front-envoy.yaml:/etc/front-envoy.yaml
+    # With xDS Server configuration
+    # - ./front-envoy-with-xds.yaml:/etc/front-envoy.yaml
     networks:
       - envoymesh
     expose:
