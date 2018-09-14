@@ -29,9 +29,6 @@ func main() {
 	cb := &callbacks{signal: signal}
 
 	snapshot := GenerateExampleSnapshot()
-	if err := snapshot.Consistent(); err != nil {
-		log.Errorf("snapshot inconsistency: %+v", snapshot)
-	}
 
 	srv := xds.NewServer(config, cb)
 
