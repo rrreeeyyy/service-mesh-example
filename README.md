@@ -2,6 +2,8 @@
 
 Service mesh example originates from [envoy/example/front-proxy](https://github.com/envoyproxy/envoy/tree/adda57914297f4179ae29e4bb34685124f3e516b/examples/front-proxy) with minimal xDS API Server using with [go-control-plane](https://github.com/envoyproxy/go-control-plane)
 
+![service mesh example](images/service-mesh-example.png)
+
 ## Configuration
 
 - Static front-proxy configuration: `./front-envoy.yaml`
